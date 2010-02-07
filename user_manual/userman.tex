@@ -1,0 +1,61 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{t1enc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancyplain}
+
+\lhead{PÁRKÁNYI PÉTER}
+\chead{}
+\rhead{\textit{\rightmark}}
+
+\begin{document}
+\include{frontpage}
+
+\section{Command-line Arguments}
+Twitterm accepts only one command line argument, which is the path of the configuration file. If no argument is given, no configuration is loaded, and the user has to set up the session using the available commands such as \verb!a! and \verb!c! which authenticate the user, and create a group of people respectively.
+
+\section{Commands}
+The application gives the user a command prompt when started. It accepts several commands, both on interaction with the application itself and Twitter.
+
+The available commands as of the time of writing this document are:
+
+\begin{description}
+	\item [f (group)] fetches the home timeline of the authenticated user. If parameter \verb!group! is given, only tweets by people in \verb!group! will be shown.
+	\item [p message] post a message to Twitter using the given credentials
+	\item [l (f/r) (group)] lists the friends of the authenticated user if the first parameter is \verb!f! or no parameter is given. If the first parameter is \verb!o!, the followers of the user will be shown. If a second parameter is given, only people in the \verb!group! will be shown. The second parameter is only processed if the first one is \verb!f!.
+	\item [a user password] performs an authentication with Twitter, and shows the result to the user. No matter what Twitter responds, the given credentials are saved (not in the config file, though), and the application will use them further on.
+	\item [w file] dumps the active configuration into the given \verb!file! parameter.
+	\item [c group friends] creates a group of friends (for further information consult section \textit{`About groups and people'}.
+	\item [q] Twitterm quits
+\end{description}
+
+Running of the application can also be terminated if one closes the standard input, and thus the application can easily be scripted, so that it performs an action and immediately quits. If scripting, beware that a command has to be terminated by a line feed (\verb!\n!)!
+
+\section{Configuration file}
+The configuration file is a simple text file, with JSON content. The top-level object has to be an array. Twitterm processes the objects given in the array with no respect to their order. If a definition is present multiple times only the first one will be handled.
+
+An example configuration file might look like this:
+
+\begin{verbatim}	
+  [
+    {
+      "user":"example",
+      "pwd":"12345abc,"
+    },
+    {
+      "groups":true,
+      "group1":"user,another_user,etc"
+    }
+  ]	
+\end{verbatim}
+
+The user and password has to be defined in the same object or Twitterm won't find it. Because of this, you can define a group named \textit{`name'} or \textit{`pwd'} in a different object. The object in which groups are defined has to have a value named \textit{`groups'} with value \verb!true!.
+
+\section{About groups and people}
+Groups are just comma-separated lists of screen names. They exist because you might not want to see every people's tweets at the same time.
+
+For example, you follow some twitterers you find interesting, but do not actually know them in real life; your close friends; your business partners; and so it goes. Let's say, you're interested in where the party tonight will be. You obviously don't want to check the tweets of those you work with, nor the ones you don't even know personally.
+
+You can create a group for each of these types of `friends', and watch their tweets separately, so that you don't have to see all the useless noise going on in the Twittersphere.
+\end{document}

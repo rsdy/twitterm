@@ -1,0 +1,15 @@
+Twitterm
+--------
+
+Twitterm is a console-based twitter client that depends only on libc. It's multiplatform, and uses Twitter public API's through JSON.
+
+For full user manual check out the user_manual/ directory and its LaTeX sources.
+
+To compile you'll need:
+- make
+- libc
+
+To generate the documentation you will need the following installed:
+- doxygen
+- a latex distribution
+- graphviz for the dependency charts

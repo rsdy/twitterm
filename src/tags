@@ -1,0 +1,100 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BUFSIZE	http.c	101;"	d	file:
+BUFSIZE	ui.c	11;"	d	file:
+HEADER_END	http.c	14;"	d	file:
+HTTP_PORT_STR	http.c	17;"	d	file:
+JSON_ARRAY	json.h	/^	JSON_ARRAY = '[',$/;"	e	enum:_json_type
+JSON_FALSE	json.h	/^	JSON_FALSE = 'f',$/;"	e	enum:_json_type
+JSON_NULL	json.h	/^	JSON_NULL = 'n',$/;"	e	enum:_json_type
+JSON_NUM	json.h	/^	JSON_NUM,$/;"	e	enum:_json_type
+JSON_OBJECT	json.h	/^	JSON_OBJECT = '{'$/;"	e	enum:_json_type
+JSON_STRING	json.h	/^	JSON_STRING = '"',$/;"	e	enum:_json_type
+JSON_TRUE	json.h	/^	JSON_TRUE = 't',$/;"	e	enum:_json_type
+JSON_UNSET	json.h	/^	JSON_UNSET,$/;"	e	enum:_json_type
+NEWLINE	http.c	13;"	d	file:
+NUMFORMAT	json_writer.c	8;"	d	file:
+SEND_NEWLINE	http.c	15;"	d	file:
+SEND_SPACE	http.c	16;"	d	file:
+TW_AUTH	ui.c	19;"	d	file:
+TW_FOLLOWERS	ui.c	18;"	d	file:
+TW_FRIENDS	ui.c	17;"	d	file:
+TW_HOST	ui.c	14;"	d	file:
+TW_TIMELINE	ui.c	15;"	d	file:
+TW_UPDATE	ui.c	16;"	d	file:
+_OOPS	ui.c	22;"	d	file:
+_OOPS_AUTH	ui.c	23;"	d	file:
+_OOPS_AUTH_USAGE	ui.c	26;"	d	file:
+_OOPS_CREAT_USAGE	ui.c	27;"	d	file:
+_OOPS_RESP	ui.c	25;"	d	file:
+__BASE64_H	base64.h	2;"	d
+__HTTP_H	http.h	2;"	d
+__JSON_H	json.h	2;"	d
+__MAIN_H	main.h	2;"	d
+__UI_H	ui.h	2;"	d
+__com_t	ui.c	/^static struct __com_t {$/;"	s	file:
+_check_auth	ui.c	/^int _check_auth(json_element * user, json_element * pwd)$/;"	f
+_com_auth	ui.c	/^void _com_auth(char *full)$/;"	f
+_com_creat	ui.c	/^void _com_creat(char *full)$/;"	f
+_com_fetch	ui.c	/^void _com_fetch(char *full)$/;"	f
+_com_inval	ui.c	/^void _com_inval(char *full)$/;"	f
+_com_list	ui.c	/^void _com_list(char *full)$/;"	f
+_com_post	ui.c	/^void _com_post(char *full)$/;"	f
+_com_write	ui.c	/^void _com_write(char *full)$/;"	f
+_config_append	ui.c	/^json_element _config_append(json_element elem)$/;"	f
+_dup_2_params	ui.c	/^int _dup_2_params(char *params, char **par1, char **par2)$/;"	f
+_dup_param	ui.c	/^char *_dup_param(char *params)$/;"	f
+_get_num	json_reader.c	/^static double *_get_num(char **str)$/;"	f	file:
+_get_paramlist	ui.c	/^char *_get_paramlist(char *full)$/;"	f
+_get_string	json_reader.c	/^static char *_get_string(char **str)$/;"	f	file:
+_get_unicode_char	json_reader.c	/^static char _get_unicode_char(unsigned int u32, char *arr)$/;"	f	file:
+_http_auth_send	http.c	/^void _http_auth_send(int sock, char *user, char *pwd)$/;"	f
+_http_header_send	http.c	/^void _http_header_send(int sock, char *host, char *file, char *method)$/;"	f
+_http_response_handle	http.c	/^int _http_response_handle(int sock, char **output)$/;"	f
+_json_element	json.h	/^struct _json_element {$/;"	s
+_json_get_chain_length	json_writer.c	/^int _json_get_chain_length(json_element elem)$/;"	f
+_json_object_to_string	json_writer.c	/^int _json_object_to_string(json_element elem, char *json, int length, int pos)$/;"	f
+_json_parse_array	json_reader.c	/^static json_element _json_parse_array(char **str)$/;"	f	file:
+_json_parse_object	json_reader.c	/^static json_element _json_parse_object(char **str)$/;"	f	file:
+_json_parse_pair	json_reader.c	/^static json_element _json_parse_pair(char **str)$/;"	f	file:
+_json_set_value	json_reader.c	/^json_element _json_set_value(char **str, json_element val)$/;"	f
+_json_type	json.h	/^typedef enum _json_type {$/;"	g
+_print_json_string	ui.c	/^void _print_json_string(json_element elem, char *name, char *prefix)$/;"	f
+_read_config	ui.c	/^int _read_config(char *conffile)$/;"	f
+_screen_name_filter	ui.c	/^int _screen_name_filter(char *params, char *sname)$/;"	f
+_socket_connect	http.c	/^static int _socket_connect(char *host, char *portn)$/;"	f	file:
+_socket_disconnect	http.c	/^static int _socket_disconnect(int socket)$/;"	f	file:
+_string_print	json_writer.c	/^int _string_print(char *dst, char *src, int pos)$/;"	f
+base	base64.c	/^static const char *base =$/;"	v	file:
+base64_encode	base64.c	/^char *base64_encode(char *str)$/;"	f
+command_fn	ui.c	/^typedef void (*command_fn) (char *full);$/;"	t	file:
+commands	ui.c	/^static struct __com_t commands[] = {$/;"	v	typeref:struct:__com_t	file:
+config	ui.c	/^static json_element config = NULL;$/;"	v	file:
+data	json.h	/^	void *data;$/;"	m	struct:_json_element
+fn	ui.c	/^	command_fn fn;$/;"	m	struct:__com_t	file:
+http_get	http.c	/^int http_get(char *domain, char *file, char **output)$/;"	f
+http_get_auth	http.c	/^int http_get_auth(char *domain, char *file, char **output, char *user,$/;"	f
+http_post_auth	http.c	/^int http_post_auth(char *domain, char *file, char **output, char *data,$/;"	f
+init_ui	ui.c	/^void init_ui(char *conffile)$/;"	f
+json_alloc	json_reader.c	/^json_element json_alloc()$/;"	f
+json_append	json_reader.c	/^json_element json_append(json_element root, json_element elem)$/;"	f
+json_append_or_set	json_reader.c	/^json_element json_append_or_set(json_element root, json_element elem,$/;"	f
+json_create_element	json_reader.c	/^json_element json_create_element(json_type type)$/;"	f
+json_create_numeric	json_reader.c	/^json_element json_create_numeric(char *key, double value)$/;"	f
+json_create_string	json_reader.c	/^json_element json_create_string(char *key, char *value)$/;"	f
+json_element	json.h	/^typedef struct _json_element *json_element;$/;"	t	typeref:struct:_json_element
+json_free	json_reader.c	/^void json_free(json_element elem)$/;"	f
+json_get_element_by_name	json_reader.c	/^json_element json_get_element_by_name(json_element obj, char *name)$/;"	f
+json_parse	json_reader.c	/^json_element json_parse(char *str)$/;"	f
+json_to_string	json_writer.c	/^char *json_to_string(json_element elem)$/;"	f
+json_type	json.h	/^} json_type;$/;"	t	typeref:enum:_json_type
+main	main.c	/^int main(int argc, char **argv)$/;"	f
+mystrdup	main.c	/^char *mystrdup(char *str)$/;"	f
+name	json.h	/^	char *name;$/;"	m	struct:_json_element
+name	ui.c	/^	char name;$/;"	m	struct:__com_t	file:
+next	json.h	/^	json_element next;$/;"	m	struct:_json_element
+type	json.h	/^	json_type type;$/;"	m	struct:_json_element
