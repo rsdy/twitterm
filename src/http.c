@@ -119,14 +119,13 @@ int _http_response_handle(int sock, char **output)
 
 	ptr = buf + 9;		/* skip the "HTTP/1.1 " part */
 	errcode = atoi(ptr);
-	if (errcode != 200 || output == NULL) {
+	if (errcode != 200 || output == NULL)
 		return errcode;
-	}
 
 	ptr = strstr(buf, "Content-Length:");
-	if (ptr == NULL) {
+	if (ptr == NULL)
 		return -1;
-	}
+
 	ptr += 15;		/* skip the "Content-Length " part */
 	bodysize = atoi(ptr);
 
@@ -134,9 +133,9 @@ int _http_response_handle(int sock, char **output)
 	 * seek to the beginning of the content (in the stream) 
 	 */
 	ptr = strstr(buf, HEADER_END);
-	if (ptr == NULL) {
+	if (ptr == NULL)
 		return -1;
-	}
+
 	ptr += 4;
 
 	/*
@@ -222,41 +221,27 @@ static int _socket_connect(char *host, char *portn)
 	struct addrinfo *res;
 	struct addrinfo *ptr;
 
-	/*
-	 * whichever IP version may be used, but only TCP connections wanted 
-	 */
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
 	ret = getaddrinfo(host, portn, &hints, &res);
-	if (ret != 0) {
+	if (ret != 0)
 		return -1;
-	}
 
-	/*
-	 * try all the supported methods for establishing connection until we
-	 * finally succeed 
-	 */
 	for (ptr = res; ptr != NULL; ptr = ptr->ai_next) {
 		sock =
 		    socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
-		if (sock == -1) {
+		if (sock == -1)
 			continue;	/* not supported socket type */
-		}
 
 		ret = connect(sock, ptr->ai_addr, ptr->ai_addrlen);
-		if (ret != -1) {
-			break;	/* connection OK, this is the one we want! */
-		}
-
-		/* socket was good enough, but connection didn't succeed */
-		close(sock);
+		if (ret != -1)
+			break;
+		else
+			close(sock);
 	}
 
-	/*
-	 * clean up 
-	 */
 	freeaddrinfo(res);
 	return sock;
 }

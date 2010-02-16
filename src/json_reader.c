@@ -57,7 +57,7 @@ static char _get_unicode_char(unsigned int u32, char *arr);
 
 json_element json_alloc()
 {
-json_element elem = malloc(sizeof(*elem));
+	json_element elem = malloc(sizeof(*elem));
 	if (elem == NULL)
 		return NULL;
 
@@ -75,7 +75,7 @@ void json_free(json_element elem)
 		return;
 
 	if (elem->data != NULL &&
-	    (elem->type == JSON_ARRAY || elem->type == JSON_OBJECT)) {
+			(elem->type == JSON_ARRAY || elem->type == JSON_OBJECT)) {
 		json_free(elem->data);
 		elem->data = NULL;
 	}
@@ -92,19 +92,20 @@ void json_free(json_element elem)
 
 json_element json_append(json_element root, json_element elem)
 {
-json_element current = root;
+	json_element current = root;
 	if (current == NULL)
 		return NULL;
 
 	while (current->next != NULL)
 		current = current->next;
+
 	current->next = elem;
 
 	return elem;
 }
 
 json_element json_append_or_set(json_element root, json_element elem,
-				json_element * to_set)
+				json_element *to_set)
 {
 	if (root == NULL) {
 		*to_set = elem;
@@ -117,16 +118,14 @@ json_element json_append_or_set(json_element root, json_element elem,
 
 json_element json_create_element(json_type type)
 {
-json_element elem = json_alloc();
-
+	json_element elem = json_alloc();
 	elem->type = type;
-
 	return elem;
 }
 
 json_element json_create_string(char *key, char *value)
 {
-json_element elem = json_create_element(JSON_STRING);
+	json_element elem = json_create_element(JSON_STRING);
 
 	elem->name = mystrdup(key);
 	elem->data = mystrdup(value);
@@ -136,7 +135,7 @@ json_element elem = json_create_element(JSON_STRING);
 
 json_element json_create_numeric(char *key, double value)
 {
-json_element elem = json_create_element(JSON_NUM);
+	json_element elem = json_create_element(JSON_NUM);
 
 	elem->name = mystrdup(key);
 	elem->data = malloc(sizeof(double));
@@ -147,12 +146,11 @@ json_element elem = json_create_element(JSON_NUM);
 
 json_element json_get_element_by_name(json_element obj, char *name)
 {
-json_element current = obj->data;
+	json_element current = obj->data;
 
 	for (; current != NULL; current = current->next) {
-		if (!(current->name == NULL || strcmp(name, current->name))) {
+		if (!(current->name == NULL || strcmp(name, current->name)))
 			return current;
-		}
 	}
 
 	return NULL;
@@ -160,9 +158,9 @@ json_element current = obj->data;
 
 json_element json_parse(char *str)
 {
-json_element root = NULL,
-    current = NULL,
-    new = NULL;
+	json_element root = NULL;
+	json_element current = NULL;
+	json_element new = NULL;
 
 	while (*str != 0) {
 		if (*str == JSON_ARRAY) {
@@ -185,9 +183,9 @@ json_element root = NULL,
  */
 static json_element _json_parse_array(char **str)
 {
-	json_element root = NULL,
-	    current = NULL,
-	    new = NULL;
+	json_element root = NULL;
+	json_element current = NULL;
+	json_element new = NULL;
 
 	/* increment the pointer, since the type has already been determined */
 	for ((*str)++; **str != 0 && **str != ']'; (*str)++) {
@@ -202,12 +200,12 @@ static json_element _json_parse_array(char **str)
 
 static json_element _json_parse_object(char **str)
 {
-	json_element root = NULL,
-	    current = NULL,
-	    new = NULL;
+	json_element root = NULL;
+	json_element current = NULL;
+	json_element new = NULL;
 
-	/* increment the pointer, since the type has already been determined */
-	for ((*str)++; **str && **str != '}';) {
+	(**str)++; /* skip the type */
+	while (**str && **str != '}') {
 		if (**str == JSON_STRING) {
 			new = _json_parse_pair(str);
 
@@ -218,14 +216,13 @@ static json_element _json_parse_object(char **str)
 		}
 	}
 
-	(*str)++;		/* set position to after the processed block */
+	(*str)++;
 	return root;
 }
 
 static json_element _json_parse_pair(char **str)
 {
 	json_element val = json_alloc();
-
 	val->name = _get_string(str);
 
 	/* advance the pointer, because _json_set_value() expects a pointer
@@ -238,7 +235,6 @@ static json_element _json_parse_pair(char **str)
 
 json_element _json_set_value(char **str, json_element val)
 {
-	/* the items in json_type enum have definite values! */
 	val->type = **str;
 
 	switch (**str) {
@@ -267,7 +263,6 @@ static double *_get_num(char **str)
 	if (num == NULL)
 		return NULL;
 
-	/* strtod sets the second pointer's value to after the processed block */
 	*num = strtod(*str, str);
 	return num;
 }
@@ -280,9 +275,8 @@ static char *_get_string(char **str)
 	char *ret;
 
 	if (**str == '"')
-		(*str)++;	/* don't process the heading " */
+		(*str)++;
 
-	/* the block counts from the first char until the trailing " char */
 	for (ptr = *str; *ptr && *ptr != '"'; ptr++) {
 		if (*ptr == '\\')
 			ptr++;
@@ -294,7 +288,8 @@ static char *_get_string(char **str)
 	for (ptr = ret; **str != '"'; ptr++, (*str)++) {
 		/* we need to handle characters beginning with \ differently */
 		if (**str == '\\') {
-			switch (*++*str) {
+			(*str)++;
+			switch (**str) {
 				/* these actually are just string representations */
 			case 'n':
 				*ptr = '\n';
@@ -311,18 +306,16 @@ static char *_get_string(char **str)
 			case 'f':
 				*ptr = '\f';
 				break;
-				/* a character specified by its utf32 code */
 			case 'u':
 				sscanf(++*str, "%4x", &u32);
 				*str += 3;
 				ptr += _get_unicode_char(u32, ptr);
 				break;
-				/* special characters that need to be escaped: \ " / */
 			default:
+				/* special characters that need to be escaped: \ " / */
 				*ptr = **str;
 			}
 		}
-		/* nothing special, just copy char to char */
 		else {
 			*ptr = **str;
 		}

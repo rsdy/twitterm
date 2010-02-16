@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 BUFSIZE	http.c	101;"	d	file:
-BUFSIZE	ui.c	11;"	d	file:
+BUFSIZE	ui.c	98;"	d	file:
 HEADER_END	http.c	14;"	d	file:
 HTTP_PORT_STR	http.c	17;"	d	file:
 JSON_ARRAY	json.h	/^	JSON_ARRAY = '[',$/;"	e	enum:_json_type
@@ -18,25 +18,26 @@ JSON_TRUE	json.h	/^	JSON_TRUE = 't',$/;"	e	enum:_json_type
 JSON_UNSET	json.h	/^	JSON_UNSET,$/;"	e	enum:_json_type
 NEWLINE	http.c	13;"	d	file:
 NUMFORMAT	json_writer.c	8;"	d	file:
+PARAM_SEPARATOR	ui.c	10;"	d	file:
 SEND_NEWLINE	http.c	15;"	d	file:
 SEND_SPACE	http.c	16;"	d	file:
-TW_AUTH	ui.c	19;"	d	file:
-TW_FOLLOWERS	ui.c	18;"	d	file:
-TW_FRIENDS	ui.c	17;"	d	file:
-TW_HOST	ui.c	14;"	d	file:
-TW_TIMELINE	ui.c	15;"	d	file:
-TW_UPDATE	ui.c	16;"	d	file:
-_OOPS	ui.c	22;"	d	file:
-_OOPS_AUTH	ui.c	23;"	d	file:
+TW_AUTH	ui.c	18;"	d	file:
+TW_FOLLOWERS	ui.c	17;"	d	file:
+TW_FRIENDS	ui.c	16;"	d	file:
+TW_HOST	ui.c	13;"	d	file:
+TW_TIMELINE	ui.c	14;"	d	file:
+TW_UPDATE	ui.c	15;"	d	file:
+_OOPS	ui.c	21;"	d	file:
+_OOPS_AUTH	ui.c	22;"	d	file:
 _OOPS_AUTH_USAGE	ui.c	26;"	d	file:
 _OOPS_CREAT_USAGE	ui.c	27;"	d	file:
-_OOPS_RESP	ui.c	25;"	d	file:
+_OOPS_RESP	ui.c	24;"	d	file:
 __BASE64_H	base64.h	2;"	d
 __HTTP_H	http.h	2;"	d
 __JSON_H	json.h	2;"	d
 __MAIN_H	main.h	2;"	d
 __UI_H	ui.h	2;"	d
-__com_t	ui.c	/^static struct __com_t {$/;"	s	file:
+__com_t	ui.c	/^struct __com_t {$/;"	s	file:
 _check_auth	ui.c	/^int _check_auth(json_element * user, json_element * pwd)$/;"	f
 _com_auth	ui.c	/^void _com_auth(char *full)$/;"	f
 _com_creat	ui.c	/^void _com_creat(char *full)$/;"	f
@@ -46,10 +47,8 @@ _com_list	ui.c	/^void _com_list(char *full)$/;"	f
 _com_post	ui.c	/^void _com_post(char *full)$/;"	f
 _com_write	ui.c	/^void _com_write(char *full)$/;"	f
 _config_append	ui.c	/^json_element _config_append(json_element elem)$/;"	f
-_dup_2_params	ui.c	/^int _dup_2_params(char *params, char **par1, char **par2)$/;"	f
-_dup_param	ui.c	/^char *_dup_param(char *params)$/;"	f
 _get_num	json_reader.c	/^static double *_get_num(char **str)$/;"	f	file:
-_get_paramlist	ui.c	/^char *_get_paramlist(char *full)$/;"	f
+_get_param_list	ui.c	/^char *_get_param_list(char *full)$/;"	f
 _get_string	json_reader.c	/^static char *_get_string(char **str)$/;"	f	file:
 _get_unicode_char	json_reader.c	/^static char _get_unicode_char(unsigned int u32, char *arr)$/;"	f	file:
 _http_auth_send	http.c	/^void _http_auth_send(int sock, char *user, char *pwd)$/;"	f

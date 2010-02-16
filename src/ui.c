@@ -18,7 +18,7 @@
 #define TW_AUTH "/account/verify_credentials.json"
 
 /** print an error message and then return (used in command functions)*/
-#define _OOPS(x) printf("ERROR: "); printf((x)); return
+#define _OOPS(x) printf("ERROR: %s\n", (x)); return
 #define _OOPS_AUTH _OOPS("cannot authenticate with the server: "\
 		"no user-password pair is given\n")
 #define _OOPS_RESP(x) printf("HTTP error code: %d\n", (x)); \

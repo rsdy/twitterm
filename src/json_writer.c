@@ -28,8 +28,8 @@ static int _string_print(char *dst, char *src, int pos);
 
 char *json_to_string(json_element elem)
 {
-int length = _json_get_chain_length(elem);
-char *json = calloc(length + 1, sizeof(*json));
+	int length = _json_get_chain_length(elem);
+	char *json = calloc(length + 1, sizeof(*json));
 
 	_json_object_to_string(elem, json, length, 0);
 	return json;
@@ -49,9 +49,7 @@ int _json_object_to_string(json_element elem, char *json, int length, int pos)
 		case JSON_ARRAY:
 		case JSON_OBJECT:
 			json[pos++] = current->type;	/* here put the bracket start */
-			pos =
-			    _json_object_to_string(current->data, json, length,
-						   pos);
+			pos = _json_object_to_string(current->data, json, length, pos);
 			json[pos++] = current->type + 2;	/* here put the bracket end */
 			break;
 		case JSON_NULL:
@@ -70,8 +68,7 @@ int _json_object_to_string(json_element elem, char *json, int length, int pos)
 			pos = _string_print(json, current->data, pos);
 			break;
 		case JSON_NUM:
-			sprintf((json + pos), NUMFORMAT,
-				*(double *) current->data);
+			sprintf((json + pos), NUMFORMAT, *(double *) current->data);
 			pos += strlen((json + pos));
 		default:
 			break;
@@ -88,13 +85,14 @@ int _json_object_to_string(json_element elem, char *json, int length, int pos)
 
 int _json_get_chain_length(json_element elem)
 {
-static char buf[30];
-int len;
-json_element current = elem;
+	static char buf[30];
+	int len;
+	json_element current = elem;
 
 	for (len = 0; current != NULL; current = current->next, len++) {
 		if (current->name != NULL)
 			len += strlen(current->name) + 3;	/* "": */
+
 		switch (current->type) {
 		case JSON_ARRAY:
 		case JSON_OBJECT:
